@@ -1,0 +1,40 @@
+; Example registrar export for the fictional domain example.org.
+; All values are made up. Use it to try out scripts/r53zone.py.
+
+$ORIGIN example.org.
+
+; SOA Record
+@	3600	 IN 	SOA	ns1.registrar-dns.example.	dns.registrar.example. (
+					2026010101
+					28800
+					7200
+					604800
+					3600
+					)
+
+; A Record
+@	600	 IN 	A	203.0.113.10
+
+; CNAME Record
+www	600	 IN 	CNAME	sites.webhost.example.
+app	600	 IN 	CNAME	app-lb-111111.eu-west-2.elb.amazonaws.com.
+test	600	 IN 	CNAME	test-lb-222222.eu-west-2.elb.amazonaws.com.
+mb.test	600	 IN 	CNAME	test-lb-222222.eu-west-2.elb.amazonaws.com.
+logs.test	600	 IN 	CNAME	d1111example.cloudfront.net.
+test2	600	 IN 	CNAME	test-lb-222222.eu-west-2.elb.amazonaws.com.
+_aaaa1111.test	3600	 IN 	CNAME	_bbbb2222.xyz.acm-validations.aws.
+_cccc3333.logs.test	3600	 IN 	CNAME	_dddd4444.xyz.acm-validations.aws.
+_domainconnect	3600	 IN 	CNAME	_domainconnect.registrar-dns.example.
+
+; MX Record
+@	3600	 IN 	MX	1	mx1.mailprovider.example.
+@	3600	 IN 	MX	5	mx2.mailprovider.example.
+
+; NS Record
+@	3600	 IN 	NS	ns1.registrar-dns.example.
+@	3600	 IN 	NS	ns2.registrar-dns.example.
+
+; TXT Record
+@	3600	 IN 	TXT	"v=spf1 include:_spf.mailprovider.example -all"
+_dmarc	3600	 IN 	TXT	"v=DMARC1; p=none; rua=mailto:dmarc@example.org"
+selector1._domainkey	3600	 IN 	TXT	"v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOC"	"AQ8AMIIBCgKCAQEAexample"
