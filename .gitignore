@@ -1,0 +1,7 @@
+# Never commit real zone exports or generated zone files
+*.zone
+*.names.txt
+*.export.txt
+!examples/*.export.txt
+__pycache__/
+.DS_Store
